@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 enum ColorSelection {
-  black('black', Color.fromARGB(69, 0, 0, 100)),
+  black('Cloud Burst', Color.fromARGB(255, 28, 36, 68)),
   deepPurple('Deep Purple', Colors.deepPurple),
   purple('Purple', Colors.purple),
   indigo('Indigo', Colors.indigo),
-  blue('Blue', Colors.blue),
+  blue('Blue', Color.fromARGB(255, 4, 6, 7)),
   yellow('Yellow', Colors.yellow),
   orange('Orange', Colors.orange),
   deepOrange('Deep Orange', Colors.deepOrange),

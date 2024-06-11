@@ -17,6 +17,11 @@ class Notes extends ConsumerStatefulWidget {
 class _NotesState extends ConsumerState<Notes> {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    bool isSmallestWidth = screenWidth >= 320 && screenWidth < 371;
+    bool isNormalWidth = screenWidth >= 371 && screenWidth < 431;
+    bool isBigWidth = screenWidth >= 431 && screenWidth < 502;
+    bool isTabletWidth = screenWidth >= 502 && screenWidth < 640;
     return SafeArea(
       child: Scaffold(
           floatingActionButton: FloatingActionButton(
@@ -24,7 +29,7 @@ class _NotesState extends ConsumerState<Notes> {
             child: const Icon(Icons.add),
           ),
           body: StreamBuilder<List<NoteData>>(
-              stream: ref.read(notesRepositoryProvider).loadNotes(),
+              stream: ref.watch(notesRepositoryProvider).loadNotes(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const LoadingIndicator();
@@ -54,9 +59,17 @@ class _NotesState extends ConsumerState<Notes> {
                     child: GridView.builder(
                         shrinkWrap: true,
                         itemCount: notesData.length,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 2),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: isSmallestWidth
+                                ? 0.827
+                                : isNormalWidth
+                                    ? 0.756
+                                    : isBigWidth
+                                        ? 0.91
+                                        : isTabletWidth
+                                            ? 1
+                                            : 1.2),
                         itemBuilder: (context, index) {
                           NoteData note = notesData[index];
                           return NoteCard(

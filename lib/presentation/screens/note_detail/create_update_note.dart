@@ -106,7 +106,19 @@ class _CreateUpdateNoteState extends ConsumerState<CreateUpdateNote> {
               color: Colors.white,
               size: 35,
             ),
-          )
+          ),
+          widget.noteId != "new"
+              ? IconButton(
+                  onPressed: () {
+                    deleteNote(note!);
+                    GoRouter.of(context).pop();
+                  },
+                  icon: const Icon(
+                    Icons.delete,
+                    color: Colors.redAccent,
+                    size: 32,
+                  ))
+              : const SizedBox()
         ],
       ),
       body: Padding(
@@ -192,5 +204,9 @@ class _CreateUpdateNoteState extends ConsumerState<CreateUpdateNote> {
         createdAt: oldNote.createdAt,
         color: bgColor != null ? bgColor!.value : selectedColor.color.value);
     await ref.watch(notesRepositoryProvider).updateNote(note);
+  }
+
+  void deleteNote(NoteData note) async {
+    await ref.watch(notesRepositoryProvider).deleteNote(note);
   }
 }
