@@ -2,6 +2,9 @@
 
 My Notes is a straightforward and intuitive Flutter application designed to manage notes efficiently. It supports all CRUD operations, allowing users to create, read, update, and delete notes seamlessly. Users can add a title, description, and choose a color for each note from a list of available colors. The app is built with scalability in mind, following clean architecture principles.
 
+##App screenshots
+![WhatsApp-Image-2024-06-19-at-15 23 57-imageonline co-merged](https://github.com/EngFred/notes_flutter_app/assets/136785545/cde9756c-2596-4fd0-a964-5d1a7da0a244)
+
 ## Features
 
 - **Create Notes:** Add new notes with an optional title and a required description. Select a color for each note from a predefined list.
